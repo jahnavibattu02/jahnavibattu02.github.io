@@ -22,7 +22,9 @@ header {
     backdrop-filter: blur(12px);
     padding: 15px 0;
     position: fixed;
+    top: 0;
     width: 100%;
+    height: auto;
     z-index: 1000;
     animation: fadeIn 1.5s ease-in-out forwards;
     opacity: 0;
@@ -86,10 +88,15 @@ nav ul li a:hover {
     flex-direction: column;
     justify-content: center;
     padding: 0 12%;
+    padding-top: 100px;
     /*background: url('https://source.unsplash.com/random/1600x900') center center / cover no-repeat;*/
     background: url('https://source.unsplash.com/1600x900/?galaxy') center center / cover no-repeat;
     position: relative;
     color: white;
+}
+
+section {
+  scroll-margin-top: 100px; /* This stops scroll from hiding under the header */
 }
 
 #hero h1 {
