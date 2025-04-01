@@ -17,48 +17,6 @@ body {
 }
 
 
-/*Mobile menu*/
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-/* Mobile Menu */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: rgba(15, 15, 15, 0.95);
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-    display: none;
-    padding: 20px 0;
-    z-index: 999;
-  }
-
-  .nav-links li {
-    margin: 15px 0;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-
 
 /* Header / Nav */
 header {
