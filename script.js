@@ -10,13 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Mobile menu 
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
 
     
     // Fade-in Effect on Scroll
