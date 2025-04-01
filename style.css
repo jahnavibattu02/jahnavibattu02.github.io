@@ -95,31 +95,17 @@ nav ul li a:hover {
     color: white;
 }
 
-@media (max-width: 768px) {
-  #hero {
-    padding-top: 130px; /* More space on smaller screens */
-  }
-
-  header {
-    padding: 12px 0;
-  }
-
-  nav .logo {
-    font-size: 1.5rem;
-  }
-
-  nav ul {
-    gap: 15px;
-    font-size: 0.95rem;
-  }
-}
-
 section {
   scroll-margin-top: 100px; /* This stops scroll from hiding under the header */
 }
+
 @media (max-width: 768px) {
   section {
     scroll-margin-top: 130px;
+  }
+
+  #hero {
+    padding: 130px 8% 0 8%; /* on smaller screens */
   }
 }
 
