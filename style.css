@@ -323,38 +323,62 @@ section h2 {
 /* Projects */
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px;
-    max-width: 1440px;
-    margin: auto;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 0 20px;
 }
 
 .project-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
     text-align: left;
-    color: #e0e0e0;
-    transition: transform 0.3s ease;
+    color: #eaeaea;
+    transition: all 0.35s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.35);
+    border-color: rgba(166, 142, 255, 0.4);
 }
 
 .project-card img {
     width: 100%;
     border-radius: 12px;
-    margin-bottom: 12px;
-    transition: 0.3s ease;
+    margin-bottom: 14px;
+    transition: transform 0.35s ease;
 }
 
 .project-card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
+}
+
+.project-card h3 {
+    margin: 10px 0;
+    font-size: 1.3rem;
 }
 
 .project-card h3 a {
-    color: #a68eff; /* soft violet, matches your logo gradient */
+    color: #b399ff;
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .project-card h3 a:hover {
-    color: #ffffff; /* clean white on hover */
+    color: #ffffff;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    color: #cfcfcf;
 }
 
 
@@ -562,3 +586,4 @@ footer {
         max-width: 1600px;
     }
 }
+
