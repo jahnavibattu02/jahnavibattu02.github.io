@@ -323,7 +323,7 @@ section h2 {
 /* Projects */
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     max-width: 1400px;
     margin: 60px auto;
@@ -630,4 +630,5 @@ footer {
         max-width: 1600px;
     }
 }
+
 
