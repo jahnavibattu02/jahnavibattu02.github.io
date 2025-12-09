@@ -324,62 +324,106 @@ section h2 {
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+    gap: 32px;
     max-width: 1400px;
-    margin: 50px auto;
-    padding: 0 20px;
+    margin: 60px auto;
+    padding: 0 24px;
 }
 
+/* Card */
 .project-card {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 20px;
+    position: relative;
+    background: radial-gradient(circle at top left,
+                rgba(179, 153, 255, 0.12),
+                rgba(15, 15, 25, 0.95));
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 18px 18px 20px;
     text-align: left;
     color: #eaeaea;
-    transition: all 0.35s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45);
+    transition: transform 0.35s ease, box-shadow 0.35s ease,
+                border-color 0.35s ease, background 0.35s ease;
     cursor: pointer;
+    overflow: hidden;
+    opacity: 0;
+    animation: cardFadeIn 0.6s ease forwards;
+}
+
+/* staggered fade-in */
+.project-card:nth-child(2) { animation-delay: 0.08s; }
+.project-card:nth-child(3) { animation-delay: 0.16s; }
+.project-card:nth-child(4) { animation-delay: 0.24s; }
+.project-card:nth-child(5) { animation-delay: 0.32s; }
+.project-card:nth-child(6) { animation-delay: 0.40s; }
+.project-card:nth-child(7) { animation-delay: 0.48s; }
+.project-card:nth-child(8) { animation-delay: 0.56s; }
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.35);
-    border-color: rgba(166, 142, 255, 0.4);
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    border-color: rgba(179, 153, 255, 0.7);
+    background: radial-gradient(circle at top left,
+                rgba(179, 153, 255, 0.22),
+                rgba(10, 10, 20, 0.98));
 }
 
+/* Image */
 .project-card img {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 14px;
     margin-bottom: 14px;
     transition: transform 0.35s ease;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16 / 11; /* keeps all cards visually consistent */
 }
 
 .project-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
+/* Title */
 .project-card h3 {
-    margin: 10px 0;
-    font-size: 1.3rem;
+    margin: 8px 0 4px;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
 }
 
 .project-card h3 a {
-    color: #b399ff;
+    color: #cbb5ff;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s ease;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .project-card h3 a:hover {
     color: #ffffff;
+    text-shadow: 0 0 12px rgba(206, 178, 255, 0.9);
 }
 
+/* Description */
 .project-card p {
+    margin-top: 4px;
     font-size: 0.95rem;
-    line-height: 1.4rem;
-    color: #cfcfcf;
+    line-height: 1.45rem;
+    color: #d4d4d4;
+    opacity: 0.9;
 }
+
+
 
 
 /* Certifications */
