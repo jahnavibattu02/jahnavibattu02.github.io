@@ -1,65 +1,72 @@
-// HERO TYPING EFFECT
-const text = "Hi, I'm Jahnavi Battu";
-let i = 0;
+document.addEventListener("DOMContentLoaded", function () {
 
-function typeEffect() {
-    const el = document.querySelector("#hero h1");
-    if (!el) return;
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll("nav ul li a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
 
-    if (i < text.length) {
-        el.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeEffect, 60);
+    // Fade-in Effect on Scroll
+    const sections = document.querySelectorAll("section");
+
+    function revealSections() {
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (sectionTop < windowHeight - 50) {
+                section.classList.add("show");
+            }
+        });
     }
-}
 
-// PROGRESS BAR
-window.addEventListener("scroll", () => {
-    const scrollTop = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - window.innerHeight;
+    let scrollTimeout;
 
-    const progress = (scrollTop / height) * 100;
-    document.getElementById("progress-bar").style.width = progress + "%";
-});
-
-// SECTION REVEAL (FAST + CLEAN)
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
+    window.addEventListener("scroll", () => {
+        if (scrollTimeout) {
+            cancelAnimationFrame(scrollTimeout);
         }
+        scrollTimeout = requestAnimationFrame(revealSections);
     });
-}, { threshold: 0.1 });
 
-document.querySelectorAll("section").forEach(sec => observer.observe(sec));
+    revealSections(); // Trigger on load
 
-// CURSOR GLOW
-document.addEventListener("mousemove", (e) => {
-    const glow = document.querySelector(".cursor-glow");
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
-});
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById("darkModeToggle");
 
-// ACTIVE NAV LINK
-const navLinks = document.querySelectorAll("nav a");
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+    }
 
-window.addEventListener("scroll", () => {
-    let fromTop = window.scrollY;
+    // Hero Section Typing Effect
+    const heroText = document.querySelector("#hero h1");
+    const textToType = "Hi!, I am Jahnavi";
+    let i = 0;
 
-    navLinks.forEach(link => {
-        const section = document.querySelector(link.getAttribute("href"));
-
-        if (
-            section &&
-            section.offsetTop <= fromTop + 100 &&
-            section.offsetTop + section.offsetHeight > fromTop + 100
-        ) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active");
+    function typeText() {
+        if (i < textToType.length) {
+            heroText.textContent += textToType.charAt(i);
+            i++;
+            setTimeout(typeText, 50); // Delay between each character
         }
-    });
-});
+    }
 
-// INIT
-document.addEventListener("DOMContentLoaded", typeEffect);
+    if (heroText) {
+        heroText.textContent = ""; // Clear before typing
+        typeText();
+    }
+
+    // Hover Animations for Skill Cards
+    document.querySelectorAll(".skill-card").forEach(card => {
+        card.addEventListener("mouseover", () => card.classList.add("hovered"));
+        card.addEventListener("mouseout", () => card.classList.remove("hovered"));
+    });
+
+});
