@@ -1,66 +1,56 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Smooth Scrolling for Navigation Links
-    document.querySelectorAll("nav ul li a").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-                target.scrollIntoView({ behavior: "smooth" });
-            }
-        });
-    });
+// Typing Effect
+const heroText = "Hi, I'm Jahnavi Battu";
+let i = 0;
 
-    // Fade-in Effect on Scroll
-    const sections = document.querySelectorAll("section");
+function type() {
+  const el = document.querySelector("#hero h1");
+  if (!el) return;
 
-    function revealSections() {
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            if (sectionTop < windowHeight - 50) {
-                section.classList.add("show");
-            }
-        });
-    }
+  if (i < heroText.length) {
+    el.textContent += heroText.charAt(i++);
+    setTimeout(type, 60);
+  }
+}
 
-    let scrollTimeout;
-    window.addEventListener("scroll", () => {
-        if (scrollTimeout) {
-            cancelAnimationFrame(scrollTimeout);
-        }
-        scrollTimeout = requestAnimationFrame(revealSections);
-    });
-    revealSections(); // Trigger on load
-
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-        });
-    }
-
-    // Hero Section Typing Effect
-    const heroText = document.querySelector("#hero h1");
-    const textToType = "Hi!, I am Jahnavi";
-    let i = 0;
-
-    function typeText() {
-        if (i < textToType.length) {
-            heroText.textContent += textToType.charAt(i);
-            i++;
-            setTimeout(typeText, 50); // Delay between each character
-        }
-    }
-
-    if (heroText) {
-        heroText.textContent = ""; // Clear before typing
-        typeText();
-    }
-
-    // Hover Animations for Skill Cards
-    document.querySelectorAll(".skill-card").forEach(card => {
-        card.addEventListener("mouseover", () => card.classList.add("hovered"));
-        card.addEventListener("mouseout", () => card.classList.remove("hovered"));
-    });
+// Progress Bar
+window.addEventListener("scroll", () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById("progress-bar").style.width =
+    (scrollTop / height) * 100 + "%";
 });
+
+// Reveal Sections
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("show");
+  });
+});
+
+document.querySelectorAll("section").forEach(sec => observer.observe(sec));
+
+// Cursor Glow
+document.addEventListener("mousemove", e => {
+  const glow = document.querySelector(".cursor-glow");
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+// Active Nav
+const links = document.querySelectorAll("nav a");
+window.addEventListener("scroll", () => {
+  let fromTop = window.scrollY;
+
+  links.forEach(link => {
+    const section = document.querySelector(link.getAttribute("href"));
+    if (section &&
+        section.offsetTop <= fromTop + 100 &&
+        section.offsetTop + section.offsetHeight > fromTop + 100) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", type);
