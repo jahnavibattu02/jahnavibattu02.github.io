@@ -924,8 +924,3 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
-
-#experience {
-    background: red !important;
-    min-height: 500px !important;
-}
